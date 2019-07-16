@@ -75,8 +75,9 @@ class Avatar extends StatelessWidget {
             child: Text(
               "Антон Чертовских",
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,),
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],
@@ -85,11 +86,50 @@ class Avatar extends StatelessWidget {
   }
 }
 
-class Menu extends StatelessWidget {
+class TextZone extends StatefulWidget {
+  int state;
+  TextZone(int state) : this.state = state;
+  @override
+  _TextZoneState createState() => _TextZoneState();
+}
+
+class _TextZoneState extends State<TextZone> {
+  @override
+  Widget build(BuildContext context) {
+    switch (widget.state) {
+      case 0:
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[Text("Ничего не умею")],
+        );
+        break;
+      case 1:
+       return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[Text("Ничего не сделал")],
+        );
+        break;
+      case 2:
+       return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[Text("Нельзя связаться")],
+        );
+        break;
+    }
+  }
+}
+
+class Menu extends StatefulWidget {
   const Menu({
     Key key,
   }) : super(key: key);
 
+  @override
+  _MenuState createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
+  int _state = 0;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -102,21 +142,32 @@ class Menu extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("Обо мне"),
-                Text("Работы"),
-                Text("Связаться")
+                FlatButton(
+                  child: Text("Обо мне"),
+                  onPressed: () {
+                    setState(() {
+                      this._state = 0;
+                    });
+                  },
+                ),
+                FlatButton(
+                    child: Text("Работы"),
+                    onPressed: () {
+                      setState(() {
+                        this._state = 1;
+                      });
+                    }),
+                FlatButton(
+                    child: Text("Связаться"),
+                    onPressed: () {
+                      setState(() {
+                        this._state = 2;
+                      });
+                    }),
               ],
             ),
           ),
-          Expanded(
-            flex: 7,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Ничего не умею"),
-              ],
-            ),
-          ),
+          Expanded(flex: 7, child: TextZone(this._state)),
         ],
       ),
     );
