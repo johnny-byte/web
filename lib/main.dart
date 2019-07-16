@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'Roboto'),
       home: Builder(),
     );
   }
@@ -48,7 +49,6 @@ class DekstopPage extends StatelessWidget {
   }
 }
 
-
 class Avatar extends StatelessWidget {
   const Avatar({
     Key key,
@@ -74,7 +74,9 @@ class Avatar extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 30),
             child: Text(
               "Антон Чертовских",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,),
             ),
           ),
         ],
@@ -82,7 +84,6 @@ class Avatar extends StatelessWidget {
     );
   }
 }
-
 
 class Menu extends StatelessWidget {
   const Menu({
