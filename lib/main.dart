@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+Color background = Colors.black87;
+Color textcolor = Colors.white70;
+
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -31,8 +35,11 @@ class MobilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[new Avatar(), new Menu()],
+      body: Container(
+        color: background,
+        child: Column(
+          children: <Widget>[new Avatar(), new Menu()],
+        ),
       ),
     );
   }
@@ -42,8 +49,11 @@ class DekstopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        children: <Widget>[new Avatar(), new Menu()],
+      body: Container(
+        color: background,
+        child: Row(
+          children: <Widget>[new Avatar(), new Menu()],
+        ),
       ),
     );
   }
@@ -62,21 +72,19 @@ class Avatar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Container(
-            width: 200,
-            height: 200,
-            child: Image.network(
-              "http://skolko-poluchaet.ru/wp-content/uploads/2018/02/skolko-zarabatyvayut-kosmonavty-768x432.jpg",
-              fit: BoxFit.cover,
-            ),
+          CircleAvatar(
+            backgroundColor: background,
+            backgroundImage: ExactAssetImage('assets/images/avatar.jpg'),
+            radius: 100,
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 30),
             child: Text(
               "Антон Чертовских",
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                color: textcolor,
+                fontSize: 24,
+                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -100,19 +108,37 @@ class _TextZoneState extends State<TextZone> {
       case 0:
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text("Ничего не умею")],
+          children: <Widget>[
+            Text("Ничего не умею",
+                style: TextStyle(
+                  color: textcolor,
+                  fontWeight: FontWeight.w300,
+                ))
+          ],
         );
         break;
       case 1:
-       return Row(
+        return Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text("Ничего не сделал")],
+          children: <Widget>[
+            Text("Ничего не сделал",
+                style: TextStyle(
+                  color: textcolor,
+                  fontWeight: FontWeight.w300,
+                ))
+          ],
         );
         break;
       case 2:
-       return Row(
+        return Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text("Нельзя связаться")],
+          children: <Widget>[
+            Text("Нельзя связаться",
+                style: TextStyle(
+                  color: textcolor,
+                  fontWeight: FontWeight.w300,
+                ))
+          ],
         );
         break;
     }
@@ -143,7 +169,11 @@ class _MenuState extends State<Menu> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 FlatButton(
-                  child: Text("Обо мне"),
+                  child: Text("Обо мне",
+                      style: TextStyle(
+                        color: textcolor,
+                        fontWeight: FontWeight.w300,
+                      )),
                   onPressed: () {
                     setState(() {
                       this._state = 0;
@@ -151,14 +181,22 @@ class _MenuState extends State<Menu> {
                   },
                 ),
                 FlatButton(
-                    child: Text("Работы"),
+                    child: Text("Работы",
+                        style: TextStyle(
+                          color: textcolor,
+                          fontWeight: FontWeight.w300,
+                        )),
                     onPressed: () {
                       setState(() {
                         this._state = 1;
                       });
                     }),
                 FlatButton(
-                    child: Text("Связаться"),
+                    child: Text("Связаться",
+                        style: TextStyle(
+                          color: textcolor,
+                          fontWeight: FontWeight.w300,
+                        )),
                     onPressed: () {
                       setState(() {
                         this._state = 2;
